@@ -1,0 +1,55 @@
+{
+  "log": {
+    "loglevel": "warning"
+  },
+  "inbounds": [
+    {
+      "port": 10000,
+      "listen": "0.0.0.0",
+      "protocol": "vless",
+      "settings": {
+        "clients": [
+          {
+            "id": "<CLIENT UUID>"
+          }
+        ],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "xhttp",
+        "xhttpSettings": {
+          "path": "<PATH>"
+        }
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "tag": "wireguard-only",
+      "protocol": "freedom",
+      "settings": {}
+    },
+    {
+      "tag": "block",
+      "protocol": "blackhole",
+      "settings": {}
+    }
+  ],
+  "routing": {
+    "domainStrategy": "AsIs",
+    "rules": [
+      {
+        "type": "field",
+        "ip": ["127.0.0.1/32"],
+        "port": "51820,51821",
+        "network": "udp",
+        "outboundTag": "wireguard-only"
+      },
+      {
+        "type": "field",
+        "port": "0-65535",
+        "outboundTag": "block"
+      }
+    ]
+  }
+}

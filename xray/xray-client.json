@@ -1,0 +1,48 @@
+{
+  "inbounds": [
+    {
+      "port": 51820,
+      "listen": "127.0.0.1",
+      "protocol": "dokodemo-door",
+      "settings": {
+        "address": "127.0.0.1",
+        "port": 51820,
+        "network": "udp"
+      },
+      "tag": "wg-tunnel"
+    }
+  ],
+  "outbounds": [
+    {
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "<SERVER ADDRESS>",
+            "port": 443,
+            "users": [
+              {
+                "id": "<CLIENT UUID>",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "xhttp",
+        "security": "tls",
+        "sockopt": {
+          "mark": 9
+        },
+        "tlsSettings": {
+          "serverName": "<SERVER ADDRESS>",
+          "fingerprint": "chrome"
+        },
+        "xhttpSettings": {
+          "path": "<PATH>"
+        }
+      }
+    }
+  ]
+}
