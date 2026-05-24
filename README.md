@@ -71,7 +71,8 @@ In order to use HTTPS, you need to setup a reverse proxy on port `443` which pro
 
 You only need to proxy the `<PATH>` to the Xray server. You can proxy the other paths to a static website or whatever you want.
 
-I would recommend nginx or cloudflare tunnel.
+I would recommend nginx or cloudflare tunnel.  
+There is an [example nginx configuration](reverse-proxy/nginx.conf) in this repository.
 
 You also need a valid SSL certificate to use HTTPS. You can use Let's encrypt for that.
 
